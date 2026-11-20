@@ -1,8 +1,8 @@
-// Wordmark until the logo files arrive: bold WILDCATS, thin DEN, like the brand mark.
-export function Logo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+
+/** The Wildcats Den mark, cut from the brand logo. Gold for maroon backgrounds, maroon for light ones. */
+export function Logo({ tone = "maroon", className = "" }: { tone?: "maroon" | "gold"; className?: string }) {
   return (
-    <span className={`font-heading leading-none tracking-[0.18em] ${className}`}>
-      <span className="font-extrabold">WILDCATS</span> <span className="font-light">DEN</span>
-    </span>
+    <Image src={`/logo-${tone}.png`} alt="Wildcats Den" width={600} height={293} priority className={`w-auto ${className}`} />
   );
 }

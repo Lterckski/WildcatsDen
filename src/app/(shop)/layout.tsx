@@ -13,7 +13,7 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
       <header className="sticky top-0 z-30 border-b bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
           <Link href="/" className="text-maroon">
-            <Logo className="text-lg md:text-xl" />
+            <Logo className="h-11 md:h-12" />
           </Link>
           <nav className="flex items-center gap-6 text-sm font-medium">
             <Link href="/#shop" className="hidden hover:text-maroon sm:block">Shop</Link>
@@ -27,7 +27,7 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
       <footer className="mt-24 bg-maroon-deep text-white/80">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 text-sm md:grid-cols-3 md:px-8">
           <div>
-            <Logo className="text-lg text-gold" />
+            <Logo tone="gold" className="h-14" />
             <p className="mt-3">The official merch store of the CIT-U Wildcats.</p>
           </div>
           <div>

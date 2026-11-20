@@ -20,7 +20,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
     <div className="flex min-h-screen flex-col md:flex-row">
       <aside className="bg-maroon-deep text-white md:w-56 md:shrink-0">
         <div className="flex items-center justify-between p-5 md:block">
-          <Link href="/admin"><Logo className="text-base text-gold" /></Link>
+          <Link href="/admin"><Logo tone="gold" className="h-10" /></Link>
           <p className="text-xs text-white/60 md:mt-1">Admin</p>
         </div>
         <nav className="flex gap-1 overflow-x-auto px-3 pb-3 text-sm md:flex-col md:pb-0">
