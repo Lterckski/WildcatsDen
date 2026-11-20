@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart";
-import { peso, PICKUP } from "@/lib/format";
+import { peso, PICKUP, priceRange } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export function ProductView({ product }: { product: Product }) {
@@ -24,7 +24,7 @@ export function ProductView({ product }: { product: Product }) {
       slug: product.slug,
       name: product.name,
       size: variant.size,
-      price: product.price,
+      price: variant.price,
       image: product.images[0] ?? "",
       qty: 1,
       stock: variant.stock,
@@ -59,7 +59,7 @@ export function ProductView({ product }: { product: Product }) {
       <div className="md:sticky md:top-24 md:self-start">
         <p className="text-xs font-semibold tracking-[0.2em] text-maroon uppercase">{product.category}</p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight">{product.name}</h1>
-        <p className="mt-3 text-2xl font-bold">{peso(product.price)}</p>
+        <p className="mt-3 text-2xl font-bold">{variant ? peso(variant.price) : priceRange(product.variants)}</p>
         {product.description && <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>}
 
         <fieldset className="mt-8">

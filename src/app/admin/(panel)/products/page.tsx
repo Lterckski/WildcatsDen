@@ -3,7 +3,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { db } from "@/lib/supabase/server";
-import { peso, sortVariants } from "@/lib/format";
+import { priceRange, sortVariants } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export default async function ProductsPage() {
@@ -40,7 +40,7 @@ export default async function ProductsPage() {
                     <Link href={`/admin/products/${p.id}`} className="font-semibold text-maroon underline-offset-4 hover:underline">{p.name}</Link>
                     <p className="text-xs text-muted-foreground">{p.category}{p.active ? "" : " · Hidden"}</p>
                   </TableCell>
-                  <TableCell>{peso(p.price)}</TableCell>
+                  <TableCell>{priceRange(p.variants)}</TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
                       {sortVariants(p.variants).map((v) => (

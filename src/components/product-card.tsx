@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { peso } from "@/lib/format";
+import { priceRange } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -27,7 +27,7 @@ export function ProductCard({ product }: { product: Product }) {
           {sizes.length > 1 ? `${sizes[0]}–${sizes[sizes.length - 1]}` : sizes[0]}
         </p>
         <h3 className="text-sm font-semibold leading-snug group-hover:underline">{product.name}</h3>
-        <p className="text-base font-bold">{peso(product.price)}</p>
+        <p className="text-base font-bold">{priceRange(product.variants)}</p>
       </div>
     </Link>
   );

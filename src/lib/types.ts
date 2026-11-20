@@ -1,4 +1,4 @@
-export type Variant = { id: string; product_id: string; size: string; stock: number; sort: number };
+export type Variant = { id: string; product_id: string; size: string; price: number; stock: number; sort: number };
 
 export type Product = {
   id: string;
@@ -6,7 +6,6 @@ export type Product = {
   name: string;
   description: string;
   category: string;
-  price: number;
   images: string[];
   active: boolean;
   variants: Variant[];

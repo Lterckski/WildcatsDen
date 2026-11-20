@@ -11,13 +11,14 @@ import { compressAll } from "@/lib/compress";
 import type { Product } from "@/lib/types";
 import { saveProduct, type FormState } from "../../../actions";
 
-const TEE_SIZES = ["XS", "S", "M", "L", "XL", "2XL"];
-type Row = { id?: string; size: string; stock: number };
+// New products start with the tee sizes and current prices (₱320 up to L, ₱340 for XL and up).
+const NEW_ROWS = ["XS", "S", "M", "L", "XL", "2XL"].map((size, i) => ({ size, price: i < 4 ? 320 : 340, stock: 0 }));
+type Row = { id?: string; size: string; price: number; stock: number };
 
 export function ProductForm({ product, saved }: { product: Product | null; saved: boolean }) {
   const [state, action, pending] = useActionState<FormState, FormData>(saveProduct, saved ? { ok: "Saved." } : {});
   const [rows, setRows] = useState<Row[]>(
-    product?.variants.map((v) => ({ id: v.id, size: v.size, stock: v.stock })) ?? TEE_SIZES.map((size) => ({ size, stock: 0 })),
+    product?.variants.map((v) => ({ id: v.id, size: v.size, price: v.price, stock: v.stock })) ?? NEW_ROWS,
   );
   const [images, setImages] = useState(product?.images ?? []);
   const [removed, setRemoved] = useState<string[]>([]);
@@ -35,11 +36,7 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
           <Label htmlFor="name">Name</Label>
           <Input id="name" name="name" required defaultValue={product?.name} className="h-10" />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="price">Price (₱)</Label>
-          <Input id="price" name="price" type="number" min={0} step={1} required defaultValue={product?.price} className="h-10" />
-        </div>
-        <div className="space-y-2">
+        <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="category">Category</Label>
           <Input id="category" name="category" list="categories" required defaultValue={product?.category ?? "Tees"} className="h-10" />
           <datalist id="categories"><option value="Tees" /><option value="Bags" /><option value="Accessories" /></datalist>
@@ -59,17 +56,19 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
       </div>
 
       <fieldset className="space-y-3">
-        <legend className="mb-2 text-sm font-bold">Sizes and stock</legend>
+        <legend className="mb-2 text-sm font-bold">Sizes, prices and stock</legend>
+        <div className="flex gap-2 text-xs text-muted-foreground"><span className="w-32">Size</span><span className="w-24">Price (₱)</span><span className="w-24">Stock</span></div>
         {rows.map((r, i) => (
           <div key={r.id ?? `new-${i}`} className="flex items-center gap-2">
             <Input aria-label="Size" value={r.size} onChange={(e) => set(i, { size: e.target.value })} className="h-9 w-32" />
+            <Input aria-label={`Price for ${r.size}`} type="number" min={1} value={r.price} onChange={(e) => set(i, { price: Math.max(0, Math.floor(Number(e.target.value) || 0)) })} className="h-9 w-24" />
             <Input aria-label={`Stock for ${r.size}`} type="number" min={0} value={r.stock} onChange={(e) => set(i, { stock: Math.max(0, Math.floor(Number(e.target.value) || 0)) })} className="h-9 w-24" />
             <Button type="button" variant="ghost" size="icon" aria-label={`Remove size ${r.size}`} onClick={() => setRows(rows.filter((_, j) => j !== i))}>
               <X />
             </Button>
           </div>
         ))}
-        <Button type="button" variant="outline" onClick={() => setRows([...rows, { size: "", stock: 0 }])}>Add size</Button>
+        <Button type="button" variant="outline" onClick={() => setRows([...rows, { size: "", price: rows.at(-1)?.price ?? 0, stock: 0 }])}>Add size</Button>
       </fieldset>
 
       <fieldset className="space-y-3">

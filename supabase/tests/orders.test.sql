@@ -7,7 +7,7 @@ begin
   select id, stock into v, stock0 from variants where size = 'M' limit 1;
 
   o := place_order('Ana', 'ana@example.com', '09171234567', true, '', 'cash', '', jsonb_build_array(jsonb_build_object('variant_id', v, 'qty', 2)));
-  assert o.total = 2 * (select price from products p join variants va on va.product_id = p.id where va.id = v), 'total is price x qty';
+  assert o.total = 2 * (select price from variants where id = v), 'total is the size''s price x qty';
   assert (select stock from variants where id = v) = stock0 - 2, 'placing takes stock';
 
   ok := false;

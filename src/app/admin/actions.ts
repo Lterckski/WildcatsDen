@@ -80,11 +80,9 @@ export async function saveProduct(_: FormState, form: FormData): Promise<FormSta
   const id = text(form, "id");
   const name = text(form, "name");
   const slug = (text(form, "slug") || name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  const price = Number(text(form, "price"));
   if (!name || !slug) return { error: "Name is required." };
-  if (!Number.isInteger(price) || price < 0) return { error: "Price must be a whole number of pesos." };
 
-  let variants: { id?: string; size: string; stock: number }[];
+  let variants: { id?: string; size: string; price: number; stock: number }[];
   let kept: string[];
   try {
     variants = JSON.parse(text(form, "variants"));
@@ -95,6 +93,7 @@ export async function saveProduct(_: FormState, form: FormData): Promise<FormSta
   variants = variants.map((v) => ({ ...v, size: v.size.trim() })).filter((v) => v.size);
   if (variants.length === 0) return { error: "Add at least one size." };
   if (variants.some((v) => !Number.isInteger(v.stock) || v.stock < 0)) return { error: "Stock must be 0 or more." };
+  if (variants.some((v) => !Number.isInteger(v.price) || v.price <= 0)) return { error: "Every size needs a price in whole pesos." };
   if (new Set(variants.map((v) => v.size.toLowerCase())).size !== variants.length) return { error: "Each size can only appear once." };
 
   const uploads = form.getAll("photos").filter((f): f is File => f instanceof File && f.size > 0);
@@ -110,7 +109,6 @@ export async function saveProduct(_: FormState, form: FormData): Promise<FormSta
   const row = {
     name,
     slug,
-    price,
     category: text(form, "category") || "Tees",
     description: text(form, "description"),
     active: form.get("active") === "on",
@@ -135,8 +133,8 @@ export async function saveProduct(_: FormState, form: FormData): Promise<FormSta
   if (drop.length) await supabase.from("variants").delete().in("id", drop);
   for (const [i, v] of variants.entries()) {
     const r = v.id
-      ? await supabase.from("variants").update({ size: v.size, stock: v.stock, sort: i }).eq("id", v.id)
-      : await supabase.from("variants").insert({ product_id: productId, size: v.size, stock: v.stock, sort: i });
+      ? await supabase.from("variants").update({ size: v.size, price: v.price, stock: v.stock, sort: i }).eq("id", v.id)
+      : await supabase.from("variants").insert({ product_id: productId, size: v.size, price: v.price, stock: v.stock, sort: i });
     if (r.error) return { error: r.error.message };
   }
 

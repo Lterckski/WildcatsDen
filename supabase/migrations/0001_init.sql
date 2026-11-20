@@ -16,7 +16,6 @@ create table public.products (
   name text not null,
   description text not null default '',
   category text not null default 'Tees',
-  price integer not null check (price >= 0), -- whole pesos
   images text[] not null default '{}',
   active boolean not null default true,
   created_at timestamptz not null default now()
@@ -26,6 +25,7 @@ create table public.variants (
   id uuid primary key default gen_random_uuid(),
   product_id uuid not null references public.products on delete cascade,
   size text not null,
+  price integer not null check (price >= 0), -- whole pesos; sizes can differ (XL+ costs more)
   stock integer not null default 0 check (stock >= 0),
   sort integer not null default 0,
   unique (product_id, size)
@@ -118,7 +118,7 @@ begin
   for it in select * from jsonb_array_elements(p_items) loop
     q := (it->>'qty')::integer;
     if q is null or q < 1 or q > 20 then raise exception 'Invalid quantity'; end if;
-    select va.id, va.size, va.stock, p.name, p.price into v
+    select va.id, va.size, va.stock, va.price, p.name into v
       from variants va join products p on p.id = va.product_id
       where va.id = (it->>'variant_id')::uuid and p.active
       for update of va;
