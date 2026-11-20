@@ -63,13 +63,13 @@ export function BagLink() {
         ref={icon}
         type="button"
         onClick={open}
-        className="group relative flex items-center gap-2 text-sm font-medium hover:text-maroon"
+        className="group relative flex size-10 items-center justify-center rounded-full text-sm font-medium hover:bg-white/10 hover:text-gold"
         aria-label={`Bag, ${count} items`}
         aria-haspopup="dialog"
       >
         <ShoppingBag className="size-5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:-rotate-6" />
         {count > 0 && (
-          <span key={count} className="pop absolute -top-2 -right-2 flex size-5 items-center justify-center rounded-full bg-gold text-[11px] font-bold text-maroon-deep">
+          <span key={count} className="pop absolute -top-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full bg-gold text-[11px] font-bold text-maroon-deep">
             {count}
           </span>
         )}
