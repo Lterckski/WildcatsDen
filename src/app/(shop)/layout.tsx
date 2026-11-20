@@ -17,7 +17,7 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
           </Link>
           <nav className="flex items-center gap-1 text-sm font-semibold">
             {[["/#shop", "Shop"], ["/#tees", "Tees"], ["/#bags", "Bags"]].map(([href, label]) => (
-              <Link key={href} href={href} className="hidden rounded-full px-4 py-2 hover:bg-white/10 hover:text-gold sm:block">{label}</Link>
+              <Link key={href} href={href} className="rounded-full px-2.5 py-2 hover:bg-white/10 hover:text-gold sm:px-4">{label}</Link>
             ))}
             <BagLink />
           </nav>
