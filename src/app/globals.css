@@ -10,6 +10,7 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-montserrat);
+  --font-display: var(--font-anton);
   --color-maroon: var(--maroon);
   --color-maroon-deep: var(--maroon-deep);
   --color-gold: var(--gold);
@@ -52,30 +53,30 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #FBF7F0;
   --foreground: #1b1b1b;
-  --card: oklch(1 0 0);
+  --card: #FFFFFF;
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #7B2232;
   --primary-foreground: #ffffff;
-  --secondary: #f4f4f4;
+  --secondary: #F3EBDD;
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: #f4f4f4;
-  --muted-foreground: oklch(0.556 0 0);
+  --muted: #F3EBDD;
+  --muted-foreground: #6B5E55;
   --accent: #FFD35C;
   --accent-foreground: #5A1A22;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: #E7DCCB;
+  --input: #DCCFBA;
   --ring: #7B2232;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.125rem;
+  --radius: 0.875rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -219,4 +220,22 @@
     rotate: none !important;
     scale: none !important;
   }
+}
+
+/* ---------- Redesign: varsity editorial ---------- */
+@keyframes marquee { to { translate: -50% 0; } }
+@utility marquee {
+  animation: marquee 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+}
+@utility zebra {
+  background-image: url("/zebra.webp");
+  background-size: cover;
+  background-position: center;
+}
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px currentColor;
 }

@@ -21,7 +21,7 @@ export default function BagPage() {
   return (
     <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 md:grid-cols-[1fr_340px] md:px-8">
       <div>
-        <h1 className="mb-6 text-3xl font-extrabold tracking-tight">YOUR BAG ({count})</h1>
+        <h1 className="mb-6 font-display text-5xl tracking-tight text-maroon-deep">YOUR BAG ({count})</h1>
         <ul className="divide-y border-y">
           {items.map((i) => (
             <li key={i.variantId} className="flex animate-in fade-in slide-in-from-bottom-2 gap-4 py-5 duration-500">
@@ -51,12 +51,12 @@ export default function BagPage() {
           ))}
         </ul>
       </div>
-      <aside className="rise h-fit bg-secondary p-6 md:mt-14" style={{ animationDelay: "100ms" }}>
+      <aside className="rise h-fit rounded-3xl bg-secondary p-6 md:mt-14" style={{ animationDelay: "100ms" }}>
         <h2 className="font-extrabold">ORDER SUMMARY</h2>
         <div className="mt-4 flex justify-between text-sm"><span>Subtotal</span><span>{peso(total)}</span></div>
         <div className="mt-2 flex justify-between text-sm"><span>Pickup at SSG Office</span><span>Free</span></div>
         <div className="mt-4 flex justify-between border-t pt-4 text-lg font-bold"><span>Total</span><span>{peso(total)}</span></div>
-        <Link href="/checkout" className={buttonVariants({ className: "press mt-6 h-12 w-full font-bold tracking-wide hover:shadow-md" })}>CHECK OUT</Link>
+        <Link href="/checkout" className={buttonVariants({ className: "press mt-6 h-12 w-full rounded-full font-bold tracking-wide hover:shadow-md" })}>CHECK OUT</Link>
       </aside>
     </div>
   );

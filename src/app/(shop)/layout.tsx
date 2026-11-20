@@ -4,45 +4,55 @@ import { BagLink } from "@/components/bag-link";
 import { Logo } from "@/components/logo";
 import { PICKUP } from "@/lib/format";
 
+const TICKER = ["ALL HAIL WILDCATS", "EST. 1946", "PICK UP AT THE SSG OFFICE", "PAY WITH GCASH OR CASH", "OFFICIAL CIT-U MERCH"];
+
 export default function ShopLayout({ children }: LayoutProps<"/">) {
   return (
     <CartProvider>
-      <a href="#content" className="sr-only z-50 bg-gold px-4 py-2 font-bold text-maroon-deep focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+      <a href="#content" className="sr-only z-50 rounded-full bg-gold px-4 py-2 font-bold text-maroon-deep focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
         Skip to content
       </a>
-      <div className="bg-maroon-deep py-2 text-center text-xs font-medium tracking-wide text-gold">
-        Order online · Pick up at the SSG Office · Pay with GCash or cash
+      <div className="overflow-hidden bg-gold py-2 text-maroon-deep" aria-label="Order online, pick up at the SSG Office, pay with GCash or cash">
+        <div className="marquee flex w-max gap-8 font-display text-sm tracking-[0.15em]" aria-hidden>
+          {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((t, i) => (
+            <span key={i} className="flex items-center gap-8">{t}<span>★</span></span>
+          ))}
+        </div>
       </div>
-      <header className="sticky top-0 z-30 border-b bg-white/95 backdrop-blur">
+      <header className="sticky top-0 z-30 bg-maroon-deep/95 text-white backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
-          <Link href="/" className="text-maroon hover:opacity-80">
-            <Logo className="h-11 md:h-12" />
+          <Link href="/" className="hover:opacity-80">
+            <Logo tone="gold" className="h-11 md:h-12" />
           </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link href="/#shop" className="link-underline hidden hover:text-maroon sm:block">Shop</Link>
-            <Link href="/#tees" className="link-underline hidden hover:text-maroon sm:block">Tees</Link>
-            <Link href="/#bags" className="link-underline hidden hover:text-maroon sm:block">Bags</Link>
+          <nav className="flex items-center gap-1 text-sm font-semibold">
+            {[["/#shop", "Shop"], ["/#tees", "Tees"], ["/#bags", "Bags"]].map(([href, label]) => (
+              <Link key={href} href={href} className="hidden rounded-full px-4 py-2 hover:bg-white/10 hover:text-gold sm:block">{label}</Link>
+            ))}
             <BagLink />
           </nav>
         </div>
       </header>
       <main id="content" className="flex-1">{children}</main>
-      <footer className="mt-24 bg-maroon-deep text-white/80">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 text-sm md:grid-cols-3 md:px-8">
-          <div>
-            <Logo tone="gold" className="h-14" />
-            <p className="mt-3">The official merch store of the CIT-U Wildcats.</p>
+      <footer className="zebra relative mt-24 overflow-hidden bg-maroon-deep text-white/80">
+        <div className="absolute inset-0 bg-maroon-deep/85" />
+        <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-8 md:px-8">
+          <div className="grid gap-10 text-sm md:grid-cols-[2fr_1fr_1fr]">
+            <div>
+              <Logo tone="gold" className="h-20" />
+              <p className="mt-4 max-w-xs">The official merch store of the CIT-U Wildcats. Made by students, for the pride.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-lg tracking-wider text-gold">PICKUP</h3>
+              <p className="mt-2">{PICKUP}. Bring your order code. Unpaid orders not claimed within 7 days are cancelled.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-lg tracking-wider text-gold">FOLLOW</h3>
+              <a className="link-underline mt-2 inline-block hover:text-gold" href="https://www.facebook.com/wildcatscit" target="_blank" rel="noreferrer">
+                facebook.com/wildcatscit
+              </a>
+            </div>
           </div>
-          <div>
-            <h3 className="font-bold text-white">Pickup</h3>
-            <p className="mt-2">{PICKUP}. Bring your order code. Unpaid orders not claimed within 7 days are cancelled.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-white">Follow us</h3>
-            <a className="link-underline mt-2 inline-block hover:text-gold" href="https://www.facebook.com/wildcatscit" target="_blank" rel="noreferrer">
-              facebook.com/wildcatscit
-            </a>
-          </div>
+          <p className="mt-16 font-display text-[18vw] leading-none tracking-tight text-gold/15 select-none md:text-[12rem]" aria-hidden>WILDCATS</p>
         </div>
       </footer>
     </CartProvider>
