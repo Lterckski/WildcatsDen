@@ -12,13 +12,13 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
       </div>
       <header className="sticky top-0 z-30 border-b bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
-          <Link href="/" className="text-maroon">
+          <Link href="/" className="text-maroon hover:opacity-80">
             <Logo className="h-11 md:h-12" />
           </Link>
           <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link href="/#shop" className="hidden hover:text-maroon sm:block">Shop</Link>
-            <Link href="/#tees" className="hidden hover:text-maroon sm:block">Tees</Link>
-            <Link href="/#bags" className="hidden hover:text-maroon sm:block">Bags</Link>
+            <Link href="/#shop" className="link-underline hidden hover:text-maroon sm:block">Shop</Link>
+            <Link href="/#tees" className="link-underline hidden hover:text-maroon sm:block">Tees</Link>
+            <Link href="/#bags" className="link-underline hidden hover:text-maroon sm:block">Bags</Link>
             <BagLink />
           </nav>
         </div>
@@ -36,7 +36,7 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
           </div>
           <div>
             <h3 className="font-bold text-white">Follow us</h3>
-            <a className="mt-2 block underline-offset-4 hover:underline" href="https://www.facebook.com/wildcatscit" target="_blank" rel="noreferrer">
+            <a className="link-underline mt-2 inline-block hover:text-gold" href="https://www.facebook.com/wildcatscit" target="_blank" rel="noreferrer">
               facebook.com/wildcatscit
             </a>
           </div>

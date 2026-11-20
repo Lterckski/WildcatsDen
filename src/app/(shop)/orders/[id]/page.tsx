@@ -23,10 +23,10 @@ export default async function OrderPage({ params, searchParams }: PageProps<"/or
   ];
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12">
+    <div className="rise mx-auto max-w-2xl px-4 py-12">
       {placed && <ClearBag />}
       {placed && (
-        <div className="mb-8 bg-maroon p-6 text-white">
+        <div className="mb-8 animate-in fade-in zoom-in-95 bg-maroon p-6 text-white duration-500">
           <p className="text-sm font-semibold tracking-[0.2em] text-gold">THANK YOU</p>
           <p className="mt-1 text-xl font-bold">Your order is in. We sent the details to {o.email}.</p>
         </div>
@@ -39,8 +39,8 @@ export default async function OrderPage({ params, searchParams }: PageProps<"/or
         <p className="mt-6 text-sm">This order was cancelled{o.cancel_reason ? `: ${o.cancel_reason}` : ""}.</p>
       ) : (
         <ol className="mt-8 space-y-4 border-l-2 border-border pl-6">
-          {steps.map((s) => (
-            <li key={s.label} className="relative">
+          {steps.map((s, i) => (
+            <li key={s.label} className="rise relative" style={{ animationDelay: `${150 + i * 90}ms` }}>
               <span className={`absolute top-1 -left-[31px] size-3 rounded-full ${s.at ? "bg-maroon" : "border-2 border-border bg-white"}`} />
               <p className={`text-sm font-semibold ${s.at ? "" : "text-muted-foreground"}`}>{s.label}</p>
               {s.at && <p className="text-xs text-muted-foreground">{dateTime(s.at)}</p>}

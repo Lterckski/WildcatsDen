@@ -32,8 +32,8 @@ export default async function ProductsPage() {
               return (
                 <TableRow key={p.id} className={p.active ? "" : "opacity-50"}>
                   <TableCell>
-                    <div className="relative h-16 w-12 bg-secondary">
-                      {p.images[0] && <Image src={p.images[0]} alt="" fill sizes="48px" className="object-cover" />}
+                    <div className="group relative h-16 w-12 overflow-hidden bg-secondary">
+                      {p.images[0] && <Image src={p.images[0]} alt="" fill sizes="48px" className="object-cover transition-transform duration-300 group-hover:scale-110" />}
                     </div>
                   </TableCell>
                   <TableCell>

@@ -21,8 +21,8 @@ export function AddStaffForm() {
           <option value="admin">Admin</option>
         </select>
       </div>
-      {state.error && <p role="alert" className="text-sm text-destructive sm:col-span-2">{state.error}</p>}
-      {state.ok && <p role="status" className="text-sm text-green-700 sm:col-span-2">{state.ok}</p>}
+      {state.error && <p key={state.error} role="alert" className="animate-in fade-in slide-in-from-top-1 text-sm text-destructive sm:col-span-2">{state.error}</p>}
+      {state.ok && <p key={state.ok} role="status" className="animate-in fade-in slide-in-from-top-1 text-sm text-green-700 sm:col-span-2">{state.ok}</p>}
       <Button type="submit" disabled={pending} className="h-10 w-fit px-6">{pending ? "Adding…" : "Add account"}</Button>
     </form>
   );

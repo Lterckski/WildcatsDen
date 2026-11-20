@@ -29,12 +29,12 @@ export default function CheckoutPage() {
       </div>
     );
 
-  const choice = "flex cursor-pointer items-start gap-3 border p-4 has-checked:border-maroon has-checked:bg-maroon/5";
+  const choice = "flex cursor-pointer items-start gap-3 border p-4 transition-colors hover:border-foreground/40 has-checked:border-maroon has-checked:bg-maroon/5";
 
   return (
     <form action={action} className="mx-auto grid max-w-6xl gap-10 px-4 py-10 md:grid-cols-[1fr_340px] md:px-8">
       <input type="hidden" name="items" value={JSON.stringify(items.map((i) => ({ variant_id: i.variantId, qty: i.qty })))} />
-      <div className="space-y-10">
+      <div className="rise space-y-10">
         <h1 className="text-3xl font-extrabold tracking-tight">CHECKOUT</h1>
 
         <section className="space-y-4">
@@ -66,7 +66,7 @@ export default function CheckoutPage() {
             <p className="text-xs text-muted-foreground">Anyone can order. This just helps us know our buyers.</p>
           </fieldset>
           {student === "yes" && (
-            <div className="space-y-2">
+            <div className="animate-in fade-in slide-in-from-top-2 space-y-2 duration-300">
               <Label htmlFor="student_id">Student ID (optional)</Label>
               <Input id="student_id" name="student_id" defaultValue={v.student_id} className="h-11" />
             </div>
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
           </label>
 
           {payment === "gcash" && (
-            <div className="space-y-4 bg-secondary p-5">
+            <div className="animate-in fade-in slide-in-from-top-2 space-y-4 bg-secondary p-5 duration-300">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 {GCASH_QR && (
                   // eslint-disable-next-line @next/next/no-img-element -- the QR comes from settings, any URL
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
         </section>
       </div>
 
-      <aside className="h-fit bg-secondary p-6 md:sticky md:top-24 md:mt-14">
+      <aside className="rise h-fit bg-secondary p-6 md:sticky md:top-24 md:mt-14" style={{ animationDelay: "120ms" }}>
         <h2 className="font-extrabold">ORDER SUMMARY</h2>
         <ul className="mt-4 space-y-2 text-sm">
           {items.map((i) => (
@@ -144,8 +144,8 @@ export default function CheckoutPage() {
           ))}
         </ul>
         <div className="mt-4 flex justify-between border-t pt-4 text-lg font-bold"><span>Total</span><span>{peso(total)}</span></div>
-        {state.error && <p role="alert" className="mt-4 text-sm font-medium text-destructive">{state.error}</p>}
-        <Button type="submit" disabled={pending} className="mt-6 h-12 w-full font-bold tracking-wide">
+        {state.error && <p key={state.error} role="alert" className="mt-4 animate-in fade-in slide-in-from-top-1 text-sm font-medium text-destructive">{state.error}</p>}
+        <Button type="submit" disabled={pending} className="mt-6 h-12 w-full font-bold tracking-wide hover:shadow-md">
           {pending ? "PLACING ORDER…" : "PLACE ORDER"}
         </Button>
       </aside>

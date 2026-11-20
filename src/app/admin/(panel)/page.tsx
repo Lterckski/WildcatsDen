@@ -42,7 +42,7 @@ export default async function OrdersPage({ searchParams }: PageProps<"/admin">) 
             <Link
               key={t}
               href={`/admin?tab=${t}`}
-              className={`border px-3 py-1.5 text-sm ${t === tab ? "border-maroon bg-maroon text-white" : "bg-white hover:border-foreground"}`}
+              className={`border px-3 py-1.5 text-sm ${t === tab ? "border-maroon bg-maroon text-white" : "bg-white hover:-translate-y-0.5 hover:border-foreground"}`}
             >
               {TABS[t]}
             </Link>

@@ -25,7 +25,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
         </div>
         <nav className="flex gap-1 overflow-x-auto px-3 pb-3 text-sm md:flex-col md:pb-0">
           {links.map(([href, label]) => (
-            <Link key={href} href={href} className="rounded px-3 py-2 whitespace-nowrap hover:bg-white/10">{label}</Link>
+            <Link key={href} href={href} className="rounded px-3 py-2 whitespace-nowrap hover:translate-x-0.5 hover:bg-white/10 hover:text-gold">{label}</Link>
           ))}
           <Link href="/" className="rounded px-3 py-2 whitespace-nowrap text-white/60 hover:bg-white/10">View store ↗</Link>
         </nav>
@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
           <button className="mt-2 underline underline-offset-4 hover:text-white">Sign out</button>
         </form>
       </aside>
-      <main className="min-w-0 flex-1 bg-secondary/50 p-4 md:p-8">{children}</main>
+      <main className="min-w-0 flex-1 animate-in fade-in bg-secondary/50 p-4 duration-300 md:p-8">{children}</main>
     </div>
   );
 }

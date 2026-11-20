@@ -43,7 +43,7 @@ export default async function ReportsPage({ searchParams }: PageProps<"/admin/re
   const students = orders.filter((o) => o.cit_student).length;
 
   const stat = (label: string, value: string) => (
-    <div className="bg-white p-5">
+    <div className="bg-white p-5 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md">
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className="mt-1 text-2xl font-extrabold">{value}</p>
     </div>

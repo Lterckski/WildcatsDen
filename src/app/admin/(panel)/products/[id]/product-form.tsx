@@ -59,7 +59,7 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
         <legend className="mb-2 text-sm font-bold">Sizes, prices and stock</legend>
         <div className="flex gap-2 text-xs text-muted-foreground"><span className="w-32">Size</span><span className="w-24">Price (₱)</span><span className="w-24">Stock</span></div>
         {rows.map((r, i) => (
-          <div key={r.id ?? `new-${i}`} className="flex items-center gap-2">
+          <div key={r.id ?? `new-${i}`} className="flex animate-in fade-in slide-in-from-left-2 items-center gap-2 duration-300">
             <Input aria-label="Size" value={r.size} onChange={(e) => set(i, { size: e.target.value })} className="h-9 w-32" />
             <Input aria-label={`Price for ${r.size}`} type="number" min={1} value={r.price} onChange={(e) => set(i, { price: Math.max(0, Math.floor(Number(e.target.value) || 0)) })} className="h-9 w-24" />
             <Input aria-label={`Stock for ${r.size}`} type="number" min={0} value={r.stock} onChange={(e) => set(i, { stock: Math.max(0, Math.floor(Number(e.target.value) || 0)) })} className="h-9 w-24" />
@@ -75,10 +75,10 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
         <legend className="mb-2 text-sm font-bold">Photos</legend>
         <div className="flex flex-wrap gap-3">
           {images.map((src, i) => (
-            <div key={src} className="relative h-32 w-24 bg-secondary">
+            <div key={src} className="relative h-32 w-24 animate-in fade-in zoom-in-95 bg-secondary duration-300">
               <Image src={src} alt="" fill sizes="96px" className="object-cover" />
               {i === 0 && <span className="absolute bottom-0 left-0 bg-maroon px-1 text-[10px] text-white">Main</span>}
-              <button type="button" aria-label="Remove photo" onClick={() => { setImages(images.filter((x) => x !== src)); setRemoved([...removed, src]); }} className="absolute top-1 right-1 bg-white p-0.5">
+              <button type="button" aria-label="Remove photo" onClick={() => { setImages(images.filter((x) => x !== src)); setRemoved([...removed, src]); }} className="absolute top-1 right-1 bg-white p-0.5 hover:scale-110 hover:text-destructive">
                 <X className="size-3" />
               </button>
             </div>
@@ -88,8 +88,8 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
         <p className="text-xs text-muted-foreground">Photos are shrunk before upload. The first photo is the one shown in the store.</p>
       </fieldset>
 
-      {state.error && <p role="alert" className="text-sm text-destructive">{state.error}</p>}
-      {state.ok && <p role="status" className="text-sm text-green-700">{state.ok}</p>}
+      {state.error && <p key={state.error} role="alert" className="animate-in fade-in slide-in-from-top-1 text-sm text-destructive">{state.error}</p>}
+      {state.ok && <p role="status" className="animate-in fade-in slide-in-from-top-1 text-sm text-green-700">{state.ok}</p>}
       <Button type="submit" disabled={pending} className="h-10 px-6">{pending ? "Saving…" : "Save"}</Button>
     </form>
   );
