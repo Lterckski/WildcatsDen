@@ -8,7 +8,7 @@ export function ProductCard({ product }: { product: Product }) {
   const soldOut = product.variants.every((v) => v.stock === 0);
   return (
     <Link href={`/products/${product.slug}`} className="group reveal block">
-      <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
+      <div className="relative aspect-[3/4] overflow-hidden bg-secondary outline-1 -outline-offset-1 outline-black/10">
         {product.images[0] && (
           <Image
             src={product.images[0]}

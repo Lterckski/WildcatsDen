@@ -7,6 +7,9 @@ import { PICKUP } from "@/lib/format";
 export default function ShopLayout({ children }: LayoutProps<"/">) {
   return (
     <CartProvider>
+      <a href="#content" className="sr-only z-50 bg-gold px-4 py-2 font-bold text-maroon-deep focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+        Skip to content
+      </a>
       <div className="bg-maroon-deep py-2 text-center text-xs font-medium tracking-wide text-gold">
         Order online · Pick up at the SSG Office · Pay with GCash or cash
       </div>
@@ -23,7 +26,7 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
           </nav>
         </div>
       </header>
-      <main className="flex-1">{children}</main>
+      <main id="content" className="flex-1">{children}</main>
       <footer className="mt-24 bg-maroon-deep text-white/80">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 text-sm md:grid-cols-3 md:px-8">
           <div>

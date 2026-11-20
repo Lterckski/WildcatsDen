@@ -134,45 +134,56 @@
     @apply font-sans;
     /* Shop / Tees / Bags glide to their section. data-scroll-behavior on <html> keeps page changes instant. */
     scroll-behavior: smooth;
+    /* Keeps anchored sections and keyboard focus clear of the sticky header. */
+    scroll-padding-top: 5rem;
   }
   h1, h2, h3 {
     @apply font-heading;
   }
 }
 /* ---------- Motion ---------- */
+/* Values follow the better-ui skill: press 0.96 / 150ms ease-out, entrances 12px + 4px blur over 300ms, 100ms stagger. */
+
+:root {
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --rise-y: 12px;
+  --rise-blur: 4px;
+  --settle-scale: 1.06;
+  --pop-scale: 0.25;
+}
 
 @layer base {
   a, button, input, select, textarea, label {
-    transition-property: color, background-color, border-color, box-shadow, opacity, transform;
-    transition-duration: 160ms;
-    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-property: color, background-color, border-color, box-shadow, opacity, scale, translate, rotate;
+    transition-duration: 150ms;
+    transition-timing-function: var(--ease-out);
   }
   /* Everything you can press gives a little when pressed. */
   button:not(:disabled):active, .press:active {
-    transform: scale(0.97);
+    scale: 0.96;
   }
+  a, button, label { -webkit-tap-highlight-color: transparent; }
 }
 
 @keyframes rise {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; translate: 0 var(--rise-y); filter: blur(var(--rise-blur)); }
 }
 @keyframes settle {
-  from { transform: scale(1.08); }
+  from { scale: var(--settle-scale); }
 }
 @keyframes pop {
-  0% { transform: scale(0.4); opacity: 0; }
-  60% { transform: scale(1.15); }
+  from { scale: var(--pop-scale); opacity: 0; filter: blur(var(--rise-blur)); }
 }
 
-/* Fades and lifts in on page load; stagger with style={{ animationDelay }}. */
+/* Fades and lifts in on page load; stagger 100ms apart with style={{ animationDelay }}. */
 @utility rise {
-  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: rise 300ms var(--ease-out) both;
 }
 @utility settle {
-  animation: settle 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: settle 1.6s var(--ease-out) both;
 }
 @utility pop {
-  animation: pop 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: pop 300ms var(--ease-out) both;
 }
 /* Fades in as it scrolls into view, where the browser supports scroll-driven animation; otherwise just shows. */
 @utility reveal {
@@ -182,23 +193,30 @@
     animation-range: entry 0% entry 35%;
   }
 }
-/* Underline that draws in from the left on hover. */
+/* Underline that draws in from the left on hover (mouse only, so it never sticks after a tap). */
 @utility link-underline {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
   padding-bottom: 2px;
-  transition: background-size 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.16s;
-  &:hover { background-size: 100% 2px; }
+  transition: background-size 250ms var(--ease-out), color 150ms var(--ease-out);
+  @media (hover: hover) {
+    &:hover { background-size: 100% 2px; }
+  }
 }
 
+/* Reduced motion: nothing moves, scales or blurs; things still fade so changes stay visible. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  :root { --rise-y: 0px; --rise-blur: 0px; --settle-scale: 1; --pop-scale: 1; }
+  * {
+    --tw-enter-translate-x: 0 !important;
+    --tw-enter-translate-y: 0 !important;
+    --tw-enter-scale: 1 !important;
+    --tw-enter-blur: 0 !important;
+    translate: none !important;
+    rotate: none !important;
+    scale: none !important;
   }
-  button:not(:disabled):active, .press:active { transform: none; }
 }

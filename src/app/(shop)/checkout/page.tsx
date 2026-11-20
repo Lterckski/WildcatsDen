@@ -133,7 +133,7 @@ export default function CheckoutPage() {
         </section>
       </div>
 
-      <aside className="rise h-fit bg-secondary p-6 md:sticky md:top-24 md:mt-14" style={{ animationDelay: "120ms" }}>
+      <aside className="rise h-fit bg-secondary p-6 md:sticky md:top-24 md:mt-14" style={{ animationDelay: "100ms" }}>
         <h2 className="font-extrabold">ORDER SUMMARY</h2>
         <ul className="mt-4 space-y-2 text-sm">
           {items.map((i) => (

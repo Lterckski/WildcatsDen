@@ -40,7 +40,7 @@ export default async function OrderPage({ params, searchParams }: PageProps<"/or
       ) : (
         <ol className="mt-8 space-y-4 border-l-2 border-border pl-6">
           {steps.map((s, i) => (
-            <li key={s.label} className="rise relative" style={{ animationDelay: `${150 + i * 90}ms` }}>
+            <li key={s.label} className="rise relative" style={{ animationDelay: `${100 + i * 100}ms` }}>
               <span className={`absolute top-1 -left-[31px] size-3 rounded-full ${s.at ? "bg-maroon" : "border-2 border-border bg-white"}`} />
               <p className={`text-sm font-semibold ${s.at ? "" : "text-muted-foreground"}`}>{s.label}</p>
               {s.at && <p className="text-xs text-muted-foreground">{dateTime(s.at)}</p>}

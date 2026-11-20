@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
           <button className="mt-2 underline underline-offset-4 hover:text-white">Sign out</button>
         </form>
       </aside>
-      <main className="min-w-0 flex-1 animate-in fade-in bg-secondary/50 p-4 duration-300 md:p-8">{children}</main>
+      <main id="content" className="min-w-0 flex-1 animate-in fade-in bg-secondary/50 p-4 duration-300 md:p-8">{children}</main>
     </div>
   );
 }

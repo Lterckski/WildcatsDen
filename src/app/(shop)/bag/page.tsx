@@ -25,7 +25,7 @@ export default function BagPage() {
         <ul className="divide-y border-y">
           {items.map((i) => (
             <li key={i.variantId} className="flex animate-in fade-in slide-in-from-bottom-2 gap-4 py-5 duration-500">
-              <Link href={`/products/${i.slug}`} className="group relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-secondary">
+              <Link href={`/products/${i.slug}`} className="group relative aspect-[3/4] w-24 shrink-0 overflow-hidden bg-secondary outline-1 -outline-offset-1 outline-black/10">
                 {i.image && <Image src={i.image} alt={i.name} fill sizes="96px" className="object-cover transition-transform duration-500 group-hover:scale-105" />}
               </Link>
               <div className="flex flex-1 flex-col">
@@ -51,7 +51,7 @@ export default function BagPage() {
           ))}
         </ul>
       </div>
-      <aside className="rise h-fit bg-secondary p-6 md:mt-14" style={{ animationDelay: "120ms" }}>
+      <aside className="rise h-fit bg-secondary p-6 md:mt-14" style={{ animationDelay: "100ms" }}>
         <h2 className="font-extrabold">ORDER SUMMARY</h2>
         <div className="mt-4 flex justify-between text-sm"><span>Subtotal</span><span>{peso(total)}</span></div>
         <div className="mt-2 flex justify-between text-sm"><span>Pickup at SSG Office</span><span>Free</span></div>

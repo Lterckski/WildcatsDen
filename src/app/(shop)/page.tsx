@@ -17,8 +17,8 @@ export default async function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/90 via-maroon-deep/20 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-4 pb-12 md:px-8 md:pb-16">
           <p className="rise text-sm font-semibold tracking-[0.3em] text-gold">EST. 1946</p>
-          <h1 style={{ animationDelay: "120ms" }} className="rise mt-2 text-5xl font-extrabold tracking-tight text-white md:text-7xl">ALL HAIL<br />WILDCATS</h1>
-          <Link href="#shop" style={{ animationDelay: "240ms" }} className="rise press mt-6 inline-block bg-gold px-8 py-3 text-sm font-bold tracking-wide text-maroon-deep hover:-translate-y-0.5 hover:bg-white hover:shadow-lg">
+          <h1 style={{ animationDelay: "100ms" }} className="rise mt-2 text-5xl font-extrabold tracking-tight text-white md:text-7xl">ALL HAIL<br />WILDCATS</h1>
+          <Link href="#shop" style={{ animationDelay: "200ms" }} className="rise press mt-6 inline-block bg-gold px-8 py-3 text-sm font-bold tracking-wide text-maroon-deep hover:-translate-y-0.5 hover:bg-white hover:shadow-lg">
             SHOP THE COLLECTION
           </Link>
         </div>

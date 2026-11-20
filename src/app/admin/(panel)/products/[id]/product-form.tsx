@@ -78,8 +78,8 @@ export function ProductForm({ product, saved }: { product: Product | null; saved
             <div key={src} className="relative h-32 w-24 animate-in fade-in zoom-in-95 bg-secondary duration-300">
               <Image src={src} alt="" fill sizes="96px" className="object-cover" />
               {i === 0 && <span className="absolute bottom-0 left-0 bg-maroon px-1 text-[10px] text-white">Main</span>}
-              <button type="button" aria-label="Remove photo" onClick={() => { setImages(images.filter((x) => x !== src)); setRemoved([...removed, src]); }} className="absolute top-1 right-1 bg-white p-0.5 hover:scale-110 hover:text-destructive">
-                <X className="size-3" />
+              <button type="button" aria-label="Remove photo" onClick={() => { setImages(images.filter((x) => x !== src)); setRemoved([...removed, src]); }} className="absolute top-1 right-1 bg-white p-1.5 hover:text-destructive">
+                <X className="size-3.5" />
               </button>
             </div>
           ))}

@@ -55,7 +55,7 @@ export function ProductView({ product }: { product: Product }) {
             ))}
           </div>
         )}
-        <div className="relative aspect-[3/4] flex-1 overflow-hidden bg-secondary">
+        <div className="relative aspect-[3/4] flex-1 overflow-hidden bg-secondary outline-1 -outline-offset-1 outline-black/10">
           {product.images[image] && (
             <Image key={image} src={product.images[image]} alt={product.name} fill priority sizes="(min-width: 768px) 60vw, 100vw" className="animate-in fade-in object-cover duration-500" />
           )}
