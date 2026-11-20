@@ -4,21 +4,12 @@ import { BagLink } from "@/components/bag-link";
 import { Logo } from "@/components/logo";
 import { PICKUP } from "@/lib/format";
 
-const TICKER = ["ALL HAIL WILDCATS", "EST. 1946", "PICK UP AT THE SSG OFFICE", "PAY WITH GCASH OR CASH", "OFFICIAL CIT-U MERCH"];
-
 export default function ShopLayout({ children }: LayoutProps<"/">) {
   return (
     <CartProvider>
       <a href="#content" className="sr-only z-50 rounded-full bg-gold px-4 py-2 font-bold text-maroon-deep focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
         Skip to content
       </a>
-      <div className="overflow-hidden bg-gold py-2 text-maroon-deep" aria-label="Order online, pick up at the SSG Office, pay with GCash or cash">
-        <div className="marquee flex w-max gap-8 font-display text-sm tracking-[0.15em]" aria-hidden>
-          {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="flex items-center gap-8">{t}<span>★</span></span>
-          ))}
-        </div>
-      </div>
       <header className="sticky top-0 z-30 bg-maroon-deep/95 text-white backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
           <Link href="/" className="hover:opacity-80">

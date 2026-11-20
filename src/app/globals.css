@@ -223,13 +223,6 @@
 }
 
 /* ---------- Redesign: varsity editorial ---------- */
-@keyframes marquee { to { translate: -50% 0; } }
-@utility marquee {
-  animation: marquee 28s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee { animation: none; }
-}
 @utility zebra {
   background-image: url("/zebra.webp");
   background-size: cover;
