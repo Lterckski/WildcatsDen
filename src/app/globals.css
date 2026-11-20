@@ -132,6 +132,8 @@
   }
   html {
     @apply font-sans;
+    /* Shop / Tees / Bags glide to their section. data-scroll-behavior on <html> keeps page changes instant. */
+    scroll-behavior: smooth;
   }
   h1, h2, h3 {
     @apply font-heading;
@@ -192,6 +194,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
