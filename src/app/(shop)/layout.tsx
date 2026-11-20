@@ -18,10 +18,10 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
           <Link href="/" className="text-maroon hover:opacity-80">
             <Logo className="h-11 md:h-12" />
           </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link href="/#shop" className="link-underline hidden hover:text-maroon sm:block">Shop</Link>
-            <Link href="/#tees" className="link-underline hidden hover:text-maroon sm:block">Tees</Link>
-            <Link href="/#bags" className="link-underline hidden hover:text-maroon sm:block">Bags</Link>
+          <nav className="flex items-center gap-4 text-sm font-medium sm:gap-6">
+            <Link href="/#shop" className="link-underline hover:text-maroon">Shop</Link>
+            <Link href="/#tees" className="link-underline hover:text-maroon">Tees</Link>
+            <Link href="/#bags" className="link-underline hover:text-maroon">Bags</Link>
             <BagLink />
           </nav>
         </div>
